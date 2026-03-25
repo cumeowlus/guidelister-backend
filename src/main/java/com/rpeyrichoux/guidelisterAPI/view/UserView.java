@@ -1,7 +1,8 @@
 package com.rpeyrichoux.guidelisterAPI.view;
 
 import com.rpeyrichoux.guidelisterAPI.model.User;
-import com.rpeyrichoux.guidelisterAPI.model.UserRepository;
+import com.rpeyrichoux.guidelisterAPI.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public class UserView {
     private final UserRepository userRepo;
 
+    @Autowired
     public UserView(UserRepository userRepo) {
         this.userRepo = userRepo;
     }

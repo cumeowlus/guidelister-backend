@@ -1,14 +1,22 @@
 package com.rpeyrichoux.guidelisterAPI.view;
 
 import com.rpeyrichoux.guidelisterAPI.model.*;
+import com.rpeyrichoux.guidelisterAPI.repositories.ActivityRepository;
+import com.rpeyrichoux.guidelisterAPI.repositories.GuideRepository;
+import com.rpeyrichoux.guidelisterAPI.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class GuideView {
+
+    @Autowired
     private final GuideRepository guideRepo;
+    @Autowired
     private final ActivityRepository activityRepo;
+    @Autowired
     private final UserRepository userRepo;
 
     public GuideView(GuideRepository guideRepo, ActivityRepository activityRepo, UserRepository userRepo) {
@@ -38,7 +46,7 @@ public class GuideView {
         return guideRepo.save(guide);
     }
 
-    public Activity addActivity(Long guideId, @org.jetbrains.annotations.UnknownNullability Activity activite) {
+    public Activity addActivity(Long guideId, Activity activite) {
         Guide guide = guideRepo.findById(guideId).orElseThrow();
         activite.setGuide(guide);
         return activityRepo.save(activite);
