@@ -10,14 +10,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    private final UserView UserView;
+    private final UserView userView;
 
-    public UserController(UserView UserView) {
-        this.UserView = UserView;
+    public UserController(UserView userView) {
+        this.userView = userView;
     }
 
     @GetMapping(produces = "application/json")
     public List<User> getUsers() {
-        return UserView.getUsers();
+        return userView.getUsers();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userView.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }

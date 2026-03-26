@@ -1,10 +1,11 @@
-package com.rpeyrichoux.guidelisterAPI.test.view;
+package com.rpeyrichoux.guidelisterAPI.test;
 
 import com.rpeyrichoux.guidelisterAPI.controller.GuideController;
 import com.rpeyrichoux.guidelisterAPI.model.Activity;
 import com.rpeyrichoux.guidelisterAPI.model.Guide;
 import com.rpeyrichoux.guidelisterAPI.view.GuideView;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatusCode;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ class GuideControllerTest {
     void deleteGuide_callsVue() {
         doNothing().when(vue).deleteGuide(2L);
         var r = controller.deleteGuide(2L);
-        assertEquals(204, r.getStatusCodeValue());
+        assertEquals(HttpStatusCode.valueOf(204), r.getStatusCode());
         verify(vue).deleteGuide(2L);
     }
 }

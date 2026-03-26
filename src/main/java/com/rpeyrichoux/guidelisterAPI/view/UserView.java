@@ -23,14 +23,4 @@ public class UserView {
     public void deleteUser(Long id) {
         userRepo.deleteById(id);
     }
-
-    public User addUser(User user) {
-        user.setAdmin(false);
-        return userRepo.save(user);
-    }
-
-    public User addAdmin(User user) {
-        user.setAdmin(true);
-        return userRepo.save(user);
-    }
 }

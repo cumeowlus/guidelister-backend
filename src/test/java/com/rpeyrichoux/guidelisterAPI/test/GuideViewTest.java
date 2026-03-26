@@ -1,24 +1,24 @@
-package com.example.henritrip.test;
+package com.rpeyrichoux.guidelisterAPI.test;
 
-import com.example.henritrip.model.Activite;
-import com.example.henritrip.model.Guide;
-import com.example.henritrip.model.User;
-import com.example.henritrip.repository.ActiviteRepository;
-import com.example.henritrip.repository.GuideRepository;
-import com.example.henritrip.repository.UserRepository;
-import com.example.henritrip.vue.GuideVue;
+import com.rpeyrichoux.guidelisterAPI.model.Activity;
+import com.rpeyrichoux.guidelisterAPI.model.Guide;
+import com.rpeyrichoux.guidelisterAPI.model.User;
+import com.rpeyrichoux.guidelisterAPI.repositories.ActivityRepository;
+import com.rpeyrichoux.guidelisterAPI.repositories.GuideRepository;
+import com.rpeyrichoux.guidelisterAPI.repositories.UserRepository;
+import com.rpeyrichoux.guidelisterAPI.view.GuideView;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class GuideVueTest {
+class GuideViewTest {
     private final GuideRepository guideRepo = mock(GuideRepository.class);
-    private final ActiviteRepository actRepo = mock(ActiviteRepository.class);
+    private final ActivityRepository actRepo = mock(ActivityRepository.class);
     private final UserRepository userRepo = mock(UserRepository.class);
-    private final GuideVue vue = new GuideVue(guideRepo, actRepo, userRepo);
+    private final GuideView vue = new GuideView(guideRepo, actRepo, userRepo);
 
     @Test
     void addActivity_attachesGuideAndSaves() {
@@ -26,7 +26,7 @@ class GuideVueTest {
         g.setId(1L);
         when(guideRepo.findById(1L)).thenReturn(Optional.of(g));
         when(actRepo.save(any())).thenAnswer(inv -> inv.getArgument(0));
-        Activite a = new Activite("Musee");
+        Activity a = new Activity("Musee");
         var saved = vue.addActivity(1L, a);
         assertNotNull(saved.getGuide());
         assertEquals(1L, saved.getGuide().getId());
@@ -37,7 +37,7 @@ class GuideVueTest {
     void deleteActivity_validatesGuideThenDeletes() {
         Guide g = new Guide("T", "D");
         g.setId(2L);
-        Activite a = new Activite("X");
+        Activity a = new Activity("X");
         a.setId(5L);
         a.setGuide(g);
         when(actRepo.findById(5L)).thenReturn(Optional.of(a));
