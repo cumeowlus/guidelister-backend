@@ -1,5 +1,6 @@
 package com.rpeyrichoux.guidelisterAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -31,6 +32,7 @@ public class Activity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "guide_id")
+    @JsonIgnore
     private Guide guide;
 
     // getters/setters/constructors

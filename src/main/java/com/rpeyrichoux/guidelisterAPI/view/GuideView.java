@@ -7,6 +7,7 @@ import com.rpeyrichoux.guidelisterAPI.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,7 +26,7 @@ public class GuideView {
         this.userRepo = userRepo;
     }
 
-    public java.util.List<Guide> getGuides() {
+    public List<Guide> getGuides() {
         return guideRepo.findAll();
     }
 

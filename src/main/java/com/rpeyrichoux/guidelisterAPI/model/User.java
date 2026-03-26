@@ -1,5 +1,6 @@
 package com.rpeyrichoux.guidelisterAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -21,6 +22,7 @@ public class User {
     private boolean isAdmin = false;
 
     @ManyToMany(mappedBy = "authorizedUsers")
+    @JsonIgnore
     private Set<Guide> guides;
 
     // getters / setters / constructors
@@ -71,5 +73,9 @@ public class User {
 
     public void setGuides(Set<Guide> guides) {
         this.guides = guides;
+    }
+
+    public void setPasswordHashed(String hashed) {
+        this.password = hashed;
     }
 }

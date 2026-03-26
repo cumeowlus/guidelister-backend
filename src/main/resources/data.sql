@@ -1,3 +1,44 @@
+-- Tables
+CREATE TABLE users (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  is_admin BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE guides (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  titre VARCHAR(255) NOT NULL,
+  description TEXT,
+  nb_jour INT,
+  mobilite VARCHAR(100),
+  saison VARCHAR(100),
+  public_cible VARCHAR(200)
+);
+
+CREATE TABLE activites (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  titre VARCHAR(255) NOT NULL,
+  description TEXT,
+  categorie VARCHAR(100),
+  adresse VARCHAR(255),
+  telephone VARCHAR(50),
+  horaires VARCHAR(100),
+  site_web VARCHAR(255),
+  ordre_visite INT,
+  nb_jours INT,
+  guide_id BIGINT,
+  CONSTRAINT fk_activite_guide FOREIGN KEY (guide_id) REFERENCES guides(id) ON DELETE SET NULL
+);
+
+CREATE TABLE guide_user (
+  guide_id BIGINT NOT NULL,
+  user_id BIGINT NOT NULL,
+  PRIMARY KEY (guide_id, user_id),
+  CONSTRAINT fk_gu_guide FOREIGN KEY (guide_id) REFERENCES guides(id) ON DELETE CASCADE,
+  CONSTRAINT fk_gu_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 -- Sample users
 INSERT INTO users (email, password, is_admin) VALUES
 ('alice@example.com', 'password1', TRUE),

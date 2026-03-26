@@ -18,7 +18,7 @@ public class GuideController {
         this.guideView = guideView;
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public List<Guide> getGuides() {
         return guideView.getGuides();
     }

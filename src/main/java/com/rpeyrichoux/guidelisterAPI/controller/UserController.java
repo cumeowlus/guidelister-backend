@@ -16,26 +16,8 @@ public class UserController {
         this.UserView = UserView;
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public List<User> getUsers() {
         return UserView.getUsers();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        UserView.deleteUser(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        User created = UserView.addUser(user);
-        return ResponseEntity.ok(created);
-    }
-
-    @PostMapping("/admin")
-    public ResponseEntity<User> addAdmin(@RequestBody User user) {
-        User created = UserView.addAdmin(user);
-        return ResponseEntity.ok(created);
     }
 }

@@ -1,5 +1,6 @@
 package com.rpeyrichoux.guidelisterAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class Guide {
             joinColumns = @JoinColumn(name = "guide_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @JsonIgnoreProperties({"email","password","admin"})
     private Set<User> authorizedUsers;
 
     // getters/setters/constructors
