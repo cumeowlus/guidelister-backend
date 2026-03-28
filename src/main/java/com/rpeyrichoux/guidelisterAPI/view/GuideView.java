@@ -30,6 +30,14 @@ public class GuideView {
         return guideRepo.findAll();
     }
 
+    public Optional<Guide> getGuideById(Long id) {
+        return guideRepo.findById(id);
+    }
+
+    public List<Guide> getUserGuides(Long id) {
+        return guideRepo.findByAuthorizedUsers_Id(id);
+    }
+
     public void deleteGuide(Long id) {
         guideRepo.deleteById(id);
     }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -21,6 +22,16 @@ public class GuideController {
     @GetMapping(produces = "application/json")
     public List<Guide> getGuides() {
         return guideView.getGuides();
+    }
+
+    @GetMapping(path = "/{id}", produces = "application/json")
+    public Optional<Guide> getGuideById(@PathVariable Long id) {
+        return guideView.getGuideById(id);
+    }
+
+    @GetMapping(path = "/user/{id}", produces = "application/json")
+    public List<Guide> getUserGuides(@PathVariable Long id) {
+        return guideView.getUserGuides(id);
     }
 
     @DeleteMapping("/{id}")
