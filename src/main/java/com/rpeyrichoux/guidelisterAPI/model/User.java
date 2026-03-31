@@ -1,12 +1,14 @@
 package com.rpeyrichoux.guidelisterAPI.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties(value = { "password" })
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -38,6 +38,10 @@ public class GuideView {
         return guideRepo.findByAuthorizedUsers_Id(id);
     }
 
+    public Guide addGuide(Guide newGuide) {
+        return guideRepo.save(newGuide);
+    }
+
     public void deleteGuide(Long id) {
         guideRepo.deleteById(id);
     }
@@ -68,6 +72,13 @@ public class GuideView {
         } else {
             throw new IllegalArgumentException("Activity not attached to guide");
         }
+    }
+
+    public void deleteUserFromGuide(Long guideId, Long userId) {
+        Guide guide = guideRepo.findById(guideId).orElseThrow();
+        User user = userRepo.findById(userId).orElseThrow();
+        guide.getAuthorizedUsers().remove(user);
+        guideRepo.save(guide);
     }
 
     public Guide addUserToGuide(Long guideId, Long userId) {

@@ -23,4 +23,8 @@ public class UserView {
     public void deleteUser(Long id) {
         userRepo.deleteById(id);
     }
+
+    public List<User> getGuideUsers(Long id) {
+        return userRepo.findDistinctByGuide(id);
+    }
 }

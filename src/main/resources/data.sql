@@ -41,9 +41,10 @@ CREATE TABLE guide_user (
 
 -- Sample users
 INSERT INTO users (email, password, is_admin) VALUES
-('alice@example.com', 'password1', TRUE),
-('bob@example.com',   'password2', FALSE),
-('carole@example.com','password3', FALSE);
+ ('admin@admin.com', '$2a$10$gqkjCZEdz/ayIxb/i6is8.ediqM3TuVZIu8SUsPQqUvNQjHh6w0bi', true),
+ ('a@a.com', '$2a$10$gqkjCZEdz/ayIxb/i6is8.ediqM3TuVZIu8SUsPQqUvNQjHh6w0bi', false),
+ ('b@b.com', '$2a$10$gqkjCZEdz/ayIxb/i6is8.ediqM3TuVZIu8SUsPQqUvNQjHh6w0bi', false),
+ ('c@c.com', '$2a$10$gqkjCZEdz/ayIxb/i6is8.ediqM3TuVZIu8SUsPQqUvNQjHh6w0bi', false);
 
 -- Sample guides
 INSERT INTO guides (titre, description, nb_jour, mobilite, saison, public_cible) VALUES
@@ -70,7 +71,9 @@ INSERT INTO activites (titre, description, categorie, adresse, telephone, horair
 
 -- Link users to guides (permissions)
 INSERT INTO guide_user (guide_id, user_id) VALUES
-(1, 1), -- Alice admin on guide 1
-(1, 2), -- Bob has access to guide 1
-(2, 1), -- Alice admin on guide 2
-(3, 3); -- Carole has access to guide 3
+(1,2),
+(1,3),
+(1,4),
+(2,2),
+(3,2),
+(3,4)
